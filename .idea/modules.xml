@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/AptAnnotation/AptAnnotation.iml" filepath="$PROJECT_DIR$/AptAnnotation/AptAnnotation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AptApi/AptApi.iml" filepath="$PROJECT_DIR$/AptApi/AptApi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AptCompiler/AptCompiler.iml" filepath="$PROJECT_DIR$/AptCompiler/AptCompiler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/YCApt.iml" filepath="$PROJECT_DIR$/YCApt.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+    </modules>
+  </component>
+</project>
