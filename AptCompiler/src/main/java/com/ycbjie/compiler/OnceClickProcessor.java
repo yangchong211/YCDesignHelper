@@ -52,6 +52,19 @@ public class OnceClickProcessor extends AbstractProcessor {
         elementUtils = processingEnv.getElementUtils();
     }
 
+    /**
+     * 所有的注解处理都是从这个方法开始的，你可以理解为，当APT找到所有需要处理的注解后，会回调这个方法，
+     * 你可以通过这个方法的参数，拿到你所需要的信息。
+     *
+     * 参数 Set<? extends TypeElement> annotations ：将返回所有的由该Processor处理，并待处理的 Annotations。
+     * (属于该Processor处理的注解，但并未被使用，不存在与这个集合里)
+     *
+     * 参数 RoundEnvironment roundEnv ：表示当前或是之前的运行环境，可以通过该对象查找找到的注解。
+     * @param annotations               annotations
+     * @param roundEnv                  roundEnv
+     * @return                          返回值 表示这组 annotations 是否被这个 Processor 接受，
+     *                                  如果接受true后续子的 Processor 不会再对这个 Annotations 进行处理
+     */
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
         //获取proxyMap
@@ -67,11 +80,14 @@ public class OnceClickProcessor extends AbstractProcessor {
 
     /**
      * 注册自定义的注解名称
-     * @return                      set集合
+     * 通过重写该方法，告知Processor哪些注解需要处理。返回一个Set集合，集合内容为自定义注解的包名+类名。
+     * @return                          set集合
      */
     @Override
     public Set<String> getSupportedAnnotationTypes() {
+        //创建一个set集合，set集合特点是无序不重复
         Set<String> types = new LinkedHashSet<>();
+        //添加到集合中
         types.add(OnceClick.class.getCanonicalName());
         return types;
     }
@@ -112,7 +128,10 @@ public class OnceClickProcessor extends AbstractProcessor {
                     ",  viewId: "+viewId);
 
 
+            //取得方法参数类型列表
             List<String> methodParameterTypes = getMethodParameterTypes(executableElement);
+
+            //生成信息
             OnceMethod onceMethod = new OnceMethod(viewId,methodName, methodParameterTypes);
 
             OnceProxyInfo proxyInfo = proxyMap.get(fullClassName);
