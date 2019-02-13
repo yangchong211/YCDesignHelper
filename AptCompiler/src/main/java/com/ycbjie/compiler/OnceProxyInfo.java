@@ -22,7 +22,7 @@ public class OnceProxyInfo {
     private String proxyClassName;
     private TypeElement typeElement;
     private List<OnceMethod> methods;
-    private static final String PROXY = "PROXY";
+    private static final String PROXY = "_Once_Proxy";
 
     OnceProxyInfo(String packageName, String className) {
         this.packageName = packageName;
@@ -38,17 +38,19 @@ public class OnceProxyInfo {
 
         StringBuilder builder = new StringBuilder();
         builder.append("// Generated code from OnceClick. Do not modify!\n");
+        builder.append("// 更多内容：https://github.com/yangchong211\n");
         builder.append("package ").append(packageName).append(";\n\n");
 
+        //写入导包
         builder.append("import android.view.View;\n");
         builder.append("import com.ycbjie.api.Finder;\n");
         builder.append("import com.ycbjie.api.AbstractInjector;\n");
         builder.append('\n');
 
-        builder.append("public class ").append(proxyClassName);
-        builder.append("<T extends ").append(getTargetClassName()).append(">");
-        builder.append(" implements AbstractInjector<T>");
-        builder.append(" {\n");
+        builder.append("public class ").append(proxyClassName)
+                .append("<T extends ").append(getTargetClassName()).append(">")
+                .append(" implements AbstractInjector<T>").append(" {\n");
+        builder.append('\n');
 
         generateInjectMethod(builder);
         builder.append('\n');
@@ -63,43 +65,48 @@ public class OnceProxyInfo {
     }
 
     private void generateInjectMethod(StringBuilder builder) throws OnceClickException {
+        builder.append("    public long intervalTime; \n");
+        builder.append('\n');
 
-        builder.append("public long intervalTime; \n");
+        builder.append("    @Override \n")
+                .append("    public void setIntervalTime(long time) {\n")
+                .append("        intervalTime = time;\n    } \n");
+        builder.append('\n');
 
-        builder.append("  @Override ")
-                .append("public void setIntervalTime(long time) {\n")
-                .append("intervalTime = time;\n     } \n");
-        builder.append("  @Override ")
-                .append("public void inject(final Finder finder, final T target, Object source) {\n");
-        builder.append("View view;");
+        builder.append("    @Override \n")
+                .append("    public void inject(final Finder finder, final T target, Object source) {\n");
+        builder.append("        View view;");
+        builder.append('\n');
 
         for (OnceMethod method : getMethods()) {
-            builder.append("    view = ")
+            builder.append("        view = ")
                     .append("finder.findViewById(source, ")
                     .append(method.getId())
                     .append(");\n");
-            builder.append("if(view != null){")
-                    .append("view.setOnClickListener(new View.OnClickListener() {\n")
-                    .append("long time = 0L;");
-            builder.append("@Override\n")
-                    .append("public void onClick(View v) {");
-            builder.append("long temp = System.currentTimeMillis();\n")
-                    .append("if (temp - time >= intervalTime) {\n" +
-                            "time = temp;\n");
+            builder.append("        if(view != null){\n")
+                    .append("            view.setOnClickListener(new View.OnClickListener() {\n")
+                    .append("            long time = 0L;\n");
+            builder.append("            @Override\n")
+                    .append("            public void onClick(View v) {\n");
+            builder.append("                long temp = System.currentTimeMillis();\n")
+                    .append("                if (temp - time >= intervalTime) {\n" +
+                            "                    time = temp;\n");
             if (method.getMethodParametersSize() == 1) {
                 if (method.getMethodParameters().get(0).equals("android.view.View")) {
-                    builder.append("target.").append(method.getMethodName()).append("(v);");
+                    builder.append("                    target.")
+                            .append(method.getMethodName()).append("(v);");
                 } else {
                     throw new OnceClickException("Parameters must be android.view.View");
                 }
             } else if (method.getMethodParametersSize() == 0) {
-                builder.append("target.").append(method.getMethodName()).append("();");
+                builder.append("                    target.")
+                        .append(method.getMethodName()).append("();");
             } else {
                 throw new OnceClickException("Does not support more than one parameter");
             }
-            builder.append("\n}")
-                    .append("    }\n")
-                    .append("        });\n}");
+            builder.append("\n                }\n")
+                    .append("            }")
+                    .append("});\n        }\n");
         }
 
         builder.append("  }\n");

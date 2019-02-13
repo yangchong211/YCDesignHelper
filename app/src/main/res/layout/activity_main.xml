@@ -34,7 +34,7 @@
         android:layout_marginTop="10dp"
         android:background="@color/colorAccent"
         android:padding="10dp"
-        android:text="3.使用注解，添加点击事件，间隔3秒钟"/>
+        android:text="3.使用路由跳转到另一个activity"/>
 
 
 
