@@ -10,7 +10,7 @@ import android.view.View;
  *     blog  : https://github.com/yangchong211
  *     time  : 2017/06/21
  *     desc  : 枚举
- *     revise:
+ *     revise: Finder的作用是根据不同的类型，去实现不同的findViewById方法。
  * </pre>
  */
 public enum Finder {

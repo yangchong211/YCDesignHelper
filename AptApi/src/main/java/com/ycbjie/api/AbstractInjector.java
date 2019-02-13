@@ -7,7 +7,7 @@ package com.ycbjie.api;
  *     blog  : https://github.com/yangchong211
  *     time  : 2017/06/21
  *     desc  : 注射代码接口
- *     revise:
+ *     revise: 代理类接口，所有生成代码类都要实现这个接口。
  * </pre>
  */
 public interface AbstractInjector<T> {
