@@ -1,4 +1,4 @@
-package com.ycbjie.yconceclick;
+package com.ycbjie.ycapt;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,12 +20,12 @@ public class MainActivity extends AppCompatActivity {
 
     @OnceClick(R.id.tv_1)
     public void Click1(){
-        Log.d("tag","tv_1");
+        Log.d("tag--------------------","tv_1");
     }
 
     @OnceClick(R.id.tv_2)
     public void Click2(View v){
-        Log.d("tag","tv_2");
+        Log.d("tag--------------------","tv_2");
     }
 
 }
