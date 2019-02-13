@@ -1,2 +1,2 @@
-# YCCordova
-插件开发研究案例
+# YCApt
+关于apt方案实践与探索
