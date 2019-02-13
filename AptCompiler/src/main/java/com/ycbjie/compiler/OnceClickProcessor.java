@@ -29,6 +29,8 @@ import javax.lang.model.util.Elements;
 import javax.tools.Diagnostic;
 import javax.tools.JavaFileObject;
 
+import sun.rmi.runtime.Log;
+
 
 /**
  * <pre>
@@ -87,19 +89,25 @@ public class OnceClickProcessor extends AbstractProcessor {
 
     private Map<String, OnceProxyInfo> getProxyMap(RoundEnvironment roundEnv) {
         Map<String, OnceProxyInfo> proxyMap = new HashMap<>();
-        //循环遍历所有的注解
-        for (Element element : roundEnv.getElementsAnnotatedWith(OnceClick.class)) {
+        //遍历项目中所有的@OnceClick注解
+        Set<? extends Element> elementsAnnotatedWith = roundEnv.getElementsAnnotatedWith(OnceClick.class);
+        for (Element element : elementsAnnotatedWith) {
             //target相同只能强转。不同使用getEnclosingElement
             ExecutableElement executableElement = (ExecutableElement) element;
+            //获取基本的类名、包名
             TypeElement classElement = (TypeElement) element.getEnclosingElement();
-
             PackageElement packageElement = elementUtils.getPackageOf(classElement);
 
-
+            //全类路径名称
             String fullClassName = classElement.getQualifiedName().toString();
+            //类名
             String className = classElement.getSimpleName().toString();
+            //包名
             String packageName = packageElement.getQualifiedName().toString();
+            //方法名称
             String methodName = executableElement.getSimpleName().toString();
+
+            //获取注解参数
             int viewId = executableElement.getAnnotation(OnceClick.class).value();
 
             print("fullClassName: "+ fullClassName + ",  methodName: "+methodName +
@@ -142,6 +150,10 @@ public class OnceClickProcessor extends AbstractProcessor {
         return types;
     }
 
+    /**
+     * 开始写入代码
+     * @param proxyInfo             负责存储用于代码生成的信息
+     */
     private void writeCode(OnceProxyInfo proxyInfo) {
         try {
             JavaFileObject jfo = processingEnv.getFiler().createSourceFile(

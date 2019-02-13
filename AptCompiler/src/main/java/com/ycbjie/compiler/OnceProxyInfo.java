@@ -12,7 +12,8 @@ import javax.lang.model.element.TypeElement;
  *     blog  : https://github.com/yangchong211
  *     time  : 2017/06/21
  *     desc  : 负责存储用于代码生成的信息
- *     revise:
+ *     revise: 这个类也没什么好讲的，就是用StringBuidler拼出一个类来。
+ *             ProxyInfo保存的是类信息，方法信息我们用List methods保存。然后根据这些信息生成类。
  * </pre>
  */
 public class OnceProxyInfo {
@@ -121,7 +122,7 @@ public class OnceProxyInfo {
         this.typeElement = typeElement;
     }
 
-    List<OnceMethod> getMethods() {
+    private List<OnceMethod> getMethods() {
         return methods == null ? new ArrayList<OnceMethod>() : methods;
     }
 
