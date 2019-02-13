@@ -37,7 +37,7 @@ public class OnceProxyInfo {
     String generateJavaCode() throws OnceClickException {
 
         StringBuilder builder = new StringBuilder();
-        builder.append("// Generated code from OnceClick. Do not modify!\n");
+        builder.append("// 编译生成的代码，不要修改\n");
         builder.append("// 更多内容：https://github.com/yangchong211\n");
         builder.append("package ").append(packageName).append(";\n\n");
 
@@ -78,6 +78,7 @@ public class OnceProxyInfo {
         builder.append("        View view;");
         builder.append('\n');
 
+        //这一步是遍历所有的方法
         for (OnceMethod method : getMethods()) {
             builder.append("        view = ")
                     .append("finder.findViewById(source, ")
