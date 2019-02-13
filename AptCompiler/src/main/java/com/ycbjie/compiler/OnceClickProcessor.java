@@ -29,8 +29,6 @@ import javax.lang.model.util.Elements;
 import javax.tools.Diagnostic;
 import javax.tools.JavaFileObject;
 
-import sun.rmi.runtime.Log;
-
 
 /**
  * <pre>
