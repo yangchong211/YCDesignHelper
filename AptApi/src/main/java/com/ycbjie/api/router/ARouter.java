@@ -90,7 +90,7 @@ public class ARouter {
         }
     }
 
-    public Postcard build(String path, String group) {
+    private Postcard build(String path, String group) {
         if (TextUtils.isEmpty(path) || TextUtils.isEmpty(group)) {
             throw new RuntimeException("路由地址无效!");
         } else {
@@ -100,9 +100,8 @@ public class ARouter {
 
     /**
      * 获得组别
-     *
-     * @param path
-     * @return
+     * @param path                      path路径
+     * @return                          字符串
      */
     private String extractGroup(String path) {
         if (TextUtils.isEmpty(path) || !path.startsWith("/")) {
@@ -152,8 +151,10 @@ public class ARouter {
                     public void run() {
                         //可能需要返回码
                         if (requestCode > 0) {
-                            ActivityCompat.startActivityForResult((Activity) currentContext, intent,
-                                    requestCode, postcard.getOptionsBundle());
+                            if (currentContext instanceof Activity){
+                                ActivityCompat.startActivityForResult((Activity) currentContext, intent,
+                                        requestCode, postcard.getOptionsBundle());
+                            }
                         } else {
                             ActivityCompat.startActivity(currentContext, intent, postcard
                                     .getOptionsBundle());
