@@ -30,7 +30,7 @@ public class Postcard extends RouteMeta {
         this(path, group, null);
     }
 
-    public Postcard(String path, String group, Bundle bundle) {
+    private Postcard(String path, String group, Bundle bundle) {
         setPath(path);
         setGroup(group);
         this.mBundle = (null == bundle ? new Bundle() : bundle);
