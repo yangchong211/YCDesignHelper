@@ -6,8 +6,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import com.ycbjie.annotation.click.OnceClick;
-import com.ycbjie.api.click.OnceInit;
+import com.ycbjie.api.router.EasyRouter;
+import com.ycbjie.api.router.callback.NavigationCallback;
+import com.ycbjie.api.router.info.Postcard;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,25 +16,47 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //初始化OnceClick,并设置点击事件间隔是2秒
-        OnceInit.once(this,2000);
 
+        findViewById(R.id.tv_1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,FirstActivity.class));
+            }
+        });
         findViewById(R.id.tv_4).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this,FourActivity.class));
             }
         });
-    }
+        findViewById(R.id.tv_5).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EasyRouter.getsInstance().build(Path.five).navigation();
+            }
+        });
+        findViewById(R.id.tv_6).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EasyRouter.getsInstance().build(Path.six)
+                        .navigation(MainActivity.this, new NavigationCallback() {
+                    @Override
+                    public void onFound(Postcard postcard) {
+                        Log.e("NavigationCallback","找到跳转页面");
+                    }
 
-    @OnceClick(R.id.tv_1)
-    public void Click1(){
-        Log.d("tag--------------------","tv_1");
-    }
+                    @Override
+                    public void onLost(Postcard postcard) {
+                        Log.e("NavigationCallback","未找到");
+                    }
 
-    @OnceClick(R.id.tv_2)
-    public void Click2(View v){
-        Log.d("tag--------------------","tv_2");
+                    @Override
+                    public void onArrival(Postcard postcard) {
+                        Log.e("NavigationCallback","成功跳转");
+                    }
+                });
+            }
+        });
     }
 
 }

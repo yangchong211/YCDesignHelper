@@ -35,7 +35,7 @@ import javax.tools.JavaFileObject;
  *     @author 杨充
  *     blog  : https://github.com/yangchong211
  *     time  : 2017/06/21
- *     desc  : 自定义Processor编译器
+ *     desc  : 自定义点击事件Processor编译器
  *     revise:
  * </pre>
  */
@@ -67,6 +67,7 @@ public class OnceClickProcessor extends AbstractProcessor {
      */
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
+
         //获取proxyMap
         Map<String, OnceProxyInfo> proxyMap = getProxyMap(roundEnv);
         //遍历proxyMap，并生成代码
@@ -103,8 +104,10 @@ public class OnceClickProcessor extends AbstractProcessor {
 
     private Map<String, OnceProxyInfo> getProxyMap(RoundEnvironment roundEnv) {
         Map<String, OnceProxyInfo> proxyMap = new HashMap<>();
-        //遍历项目中所有的@OnceClick注解
+        //获取被OnceClick注解的结合数据
         Set<? extends Element> elementsAnnotatedWith = roundEnv.getElementsAnnotatedWith(OnceClick.class);
+
+        //遍历项目中所有的@OnceClick注解
         for (Element element : elementsAnnotatedWith) {
             //target相同只能强转。不同使用getEnclosingElement
             ExecutableElement executableElement = (ExecutableElement) element;
@@ -124,8 +127,7 @@ public class OnceClickProcessor extends AbstractProcessor {
             //获取注解参数
             int viewId = executableElement.getAnnotation(OnceClick.class).value();
 
-            print("fullClassName: "+ fullClassName + ",  methodName: "+methodName +
-                    ",  viewId: "+viewId);
+            print("fullClassName: "+ fullClassName + ",  methodName: "+methodName);
 
 
             //取得方法参数类型列表
