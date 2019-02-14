@@ -78,9 +78,11 @@ public class ExtraProcessor extends AbstractProcessor {
     @Override
     public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
         if (!RouterUtils.isEmpty(set)) {
+            //获取被Extra注解的集合
             Set<? extends Element> elements = roundEnvironment.getElementsAnnotatedWith(Extra.class);
             if (!RouterUtils.isEmpty(elements)) {
                 try {
+                    //记录需要生成的类与属性
                     categories(elements);
                     generateAutoWired();
                 } catch (IOException e) {
@@ -145,6 +147,5 @@ public class ExtraProcessor extends AbstractProcessor {
             }
         }
     }
-
 
 }
