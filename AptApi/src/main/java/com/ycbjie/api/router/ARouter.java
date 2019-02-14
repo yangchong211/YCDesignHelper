@@ -29,7 +29,7 @@ import java.util.Set;
 
 
 
-public class EasyRouter {
+public class ARouter {
 
     private static final String TAG = "EasyRouter";
     private static final String ROUTE_ROOT_PACKAGE = "com.ycbjie.compiler.routes";
@@ -37,18 +37,18 @@ public class EasyRouter {
     private static final String SEPARATOR = "_";
     private static final String SUFFIX_ROOT = "Root";
 
-    private static EasyRouter sInstance;
+    private static ARouter sInstance;
     private static Application mContext;
     private Handler mHandler;
 
-    private EasyRouter() {
+    private ARouter() {
         mHandler = new Handler(Looper.getMainLooper());
     }
 
-    public static EasyRouter getsInstance() {
-        synchronized (EasyRouter.class) {
+    public static ARouter getsInstance() {
+        synchronized (ARouter.class) {
             if (sInstance == null) {
-                sInstance = new EasyRouter();
+                sInstance = new ARouter();
             }
         }
         return sInstance;

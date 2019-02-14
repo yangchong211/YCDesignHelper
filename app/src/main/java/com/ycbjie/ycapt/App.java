@@ -2,13 +2,13 @@ package com.ycbjie.ycapt;
 
 import android.app.Application;
 
-import com.ycbjie.api.router.EasyRouter;
+import com.ycbjie.api.router.ARouter;
 
 public class App extends Application {
 
     @Override
     public void onCreate() {
         super.onCreate();
-        EasyRouter.init(this);
+        ARouter.init(this);
     }
 }

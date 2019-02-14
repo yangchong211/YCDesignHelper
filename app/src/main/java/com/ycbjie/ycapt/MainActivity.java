@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import com.ycbjie.api.router.EasyRouter;
+import com.ycbjie.api.router.ARouter;
 import com.ycbjie.api.router.callback.NavigationCallback;
 import com.ycbjie.api.router.info.Postcard;
 
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
                 bundle.putString("title","标题-------------");
-                EasyRouter.getsInstance()
+                ARouter.getsInstance()
                         .build(Path.five)
                         .withBundle(bundle)
                         .navigation();
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.tv_6).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EasyRouter.getsInstance().build(Path.six)
+                ARouter.getsInstance().build(Path.six)
                         .navigation(MainActivity.this, new NavigationCallback() {
                     @Override
                     public void onFound(Postcard postcard) {

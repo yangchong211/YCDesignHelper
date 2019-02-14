@@ -7,7 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityOptionsCompat;
 
 import com.ycbjie.annotation.router.RouteMeta;
-import com.ycbjie.api.router.EasyRouter;
+import com.ycbjie.api.router.ARouter;
 import com.ycbjie.api.router.callback.NavigationCallback;
 import com.ycbjie.api.router.inter.IService;
 
@@ -234,24 +234,24 @@ public class Postcard extends RouteMeta {
     }
 
     public Object navigation() {
-        return EasyRouter.getsInstance().navigation(null, this, -1, null);
+        return ARouter.getsInstance().navigation(null, this, -1, null);
     }
 
     public Object navigation(Context context) {
-        return EasyRouter.getsInstance().navigation(context, this, -1, null);
+        return ARouter.getsInstance().navigation(context, this, -1, null);
     }
 
 
     public Object navigation(Context context, NavigationCallback callback) {
-        return EasyRouter.getsInstance().navigation(context, this, -1, callback);
+        return ARouter.getsInstance().navigation(context, this, -1, callback);
     }
 
     public Object navigation(Context context, int requestCode) {
-        return EasyRouter.getsInstance().navigation(context, this, requestCode, null);
+        return ARouter.getsInstance().navigation(context, this, requestCode, null);
     }
 
     public Object navigation(Context context, int requestCode, NavigationCallback callback) {
-        return EasyRouter.getsInstance().navigation(context, this, requestCode, callback);
+        return ARouter.getsInstance().navigation(context, this, requestCode, callback);
     }
 
 
