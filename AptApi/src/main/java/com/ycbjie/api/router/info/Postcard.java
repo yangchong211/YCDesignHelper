@@ -20,7 +20,7 @@ public class Postcard extends RouteMeta {
     private int flags = -1;
     //新版风格
     private Bundle optionsCompat;
-    //老版
+    //转场动画
     private int enterAnim;
     private int exitAnim;
     //服务
