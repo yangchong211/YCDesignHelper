@@ -6,6 +6,8 @@
 - 04.该案例作用
 - 05.使用说明
 - 06.编译期注解生成代码
+- 07.运行期注解案例
+
 
 
 ### 01.什么是apt
@@ -113,7 +115,73 @@
     }
     ```
 
-### 7.其他说明
+
+### 07.运行期注解案例
+- 首先先定义自定义注解
+    ```
+    //@Retention用来修饰这是一个什么类型的注解。这里表示该注解是一个运行时注解。
+    @Retention(RetentionPolicy.RUNTIME)
+    //@Target用来表示这个注解可以使用在哪些地方。比如：类、方法、属性、接口等等。
+    //这里ElementType.TYPE 表示这个注解可以用来修饰：Class, interface or enum declaration。
+    //当你用ContentView修饰一个方法时，编译器会提示错误。
+    @Target({ElementType.TYPE})
+    //这里的interface并不是说ContentView是一个接口。
+    //就像申明类用关键字class。申明枚举用enum。申明注解用的就是@interface。
+    public @interface ContentView {
+        //返回值表示这个注解里可以存放什么类型值。
+        int value();
+    }
+    ```
+- 然后需要在activity中做注解解析
+    ```
+    @SuppressLint("Registered")
+    public class ContentActivity extends AppCompatActivity {
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            //注解解析
+            //遍历所有的子类
+            for (Class c = this.getClass(); c != Context.class; c = c.getSuperclass()) {
+                assert c != null;
+                //找到修饰了注解ContentView的类
+                ContentView annotation = (ContentView) c.getAnnotation(ContentView.class);
+                if (annotation != null) {
+                    try {
+                        //获取ContentView的属性值
+                        int value = annotation.value();
+                        //调用setContentView方法设置view
+                        this.setContentView(value);
+                    } catch (RuntimeException e) {
+                        e.printStackTrace();
+                    }
+                    return;
+                }
+            }
+        }
+    }
+    ```
+- 关于如何使用，注意你写的Activity需要实现ContentActivity，才能让注解生效
+    ```
+    @ContentView(R.layout.activity_four)
+    public class FourActivity extends ContentActivity {
+
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            findViewById(R.id.tv_1).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(FourActivity.this,"运行期注解",Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
+    ```
+
+
+
+
+### 20.其他说明
 #### 01.关于博客汇总链接
 - 1.[技术博客汇总](https://www.jianshu.com/p/614cb839182c)
 - 2.[开源项目汇总](https://blog.csdn.net/m0_37700275/article/details/80863574)

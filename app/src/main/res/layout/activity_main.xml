@@ -36,7 +36,14 @@
         android:padding="10dp"
         android:text="3.使用路由跳转到另一个activity"/>
 
-
+    <TextView
+        android:id="@+id/tv_4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorAccent"
+        android:padding="10dp"
+        android:text="4.测试运行期注解方案实现案例"/>
 
 
 </LinearLayout>

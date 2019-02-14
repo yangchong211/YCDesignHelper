@@ -1,7 +1,7 @@
-package com.ycbjie.compiler;
+package com.ycbjie.compiler.click;
 
 import com.google.auto.service.AutoService;
-import com.ycbjie.annotation.OnceClick;
+import com.ycbjie.annotation.click.OnceClick;
 
 import java.io.IOException;
 import java.io.Writer;

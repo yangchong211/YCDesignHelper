@@ -1,8 +1,9 @@
-package com.ycbjie.api;
+package com.ycbjie.api.click;
 
 
 import android.app.Activity;
 import android.view.View;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 

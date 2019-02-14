@@ -1,4 +1,4 @@
-package com.ycbjie.annotation;
+package com.ycbjie.annotation.click;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -12,7 +12,8 @@ import java.lang.annotation.Target;
  *     blog  : https://github.com/yangchong211
  *     time  : 2017/06/21
  *     desc  : 一定time时间内该点击事件只能执行一次
- *     revise:
+ *     revise: 该类是作用于点击事件
+ *     编译器注解案例
  * </pre>
  */
 //@Retention用来修饰这是一个什么类型的注解。这里表示该注解是一个编译时注解。

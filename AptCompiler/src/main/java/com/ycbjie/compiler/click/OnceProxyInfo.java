@@ -1,4 +1,4 @@
-package com.ycbjie.compiler;
+package com.ycbjie.compiler.click;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,10 +42,10 @@ public class OnceProxyInfo {
         builder.append("// 更多内容：https://github.com/yangchong211\n");
         builder.append("package ").append(packageName).append(";\n\n");
 
-        //写入导包
+        //写入导包，注意如果更换了Finder和AbstractInjector类的路径，此处也需要更改
         builder.append("import android.view.View;\n");
-        builder.append("import com.ycbjie.api.Finder;\n");
-        builder.append("import com.ycbjie.api.AbstractInjector;\n");
+        builder.append("import com.ycbjie.api.click.Finder;\n");
+        builder.append("import com.ycbjie.api.click.AbstractInjector;\n");
         builder.append('\n');
 
         builder.append("public class ").append(proxyClassName)

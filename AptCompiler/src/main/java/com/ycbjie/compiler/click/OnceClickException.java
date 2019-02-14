@@ -1,4 +1,4 @@
-package com.ycbjie.compiler;
+package com.ycbjie.compiler.click;
 
 
 /**

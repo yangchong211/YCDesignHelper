@@ -1,4 +1,4 @@
-package com.ycbjie.api;
+package com.ycbjie.api.click;
 
 
 /**
