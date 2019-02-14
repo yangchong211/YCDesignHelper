@@ -50,6 +50,11 @@ public class Postcard extends RouteMeta {
         this.service = service;
     }
 
+    /**
+     * 设置flag
+     * @param flag              flag
+     * @return                  Postcard
+     */
     public Postcard withFlags(int flag) {
         this.flags = flag;
         return this;
@@ -61,10 +66,9 @@ public class Postcard extends RouteMeta {
 
     /**
      * 跳转动画
-     *
-     * @param enterAnim
-     * @param exitAnim
-     * @return
+     * @param enterAnim         进入动画
+     * @param exitAnim          退出动画
+     * @return                  Postcard
      */
     public Postcard withTransition(int enterAnim, int exitAnim) {
         this.enterAnim = enterAnim;
@@ -74,9 +78,8 @@ public class Postcard extends RouteMeta {
 
     /**
      * 转场动画
-     *
-     * @param compat
-     * @return
+     * @param compat            compat
+     * @return                  Postcard
      */
     public Postcard withOptionsCompat(ActivityOptionsCompat compat) {
         if (null != compat) {
@@ -85,11 +88,17 @@ public class Postcard extends RouteMeta {
         return this;
     }
 
+    public Postcard withBundle(Bundle bundle) {
+        if (null != bundle) {
+            mBundle = bundle;
+        }
+        return this;
+    }
+
     public Postcard withString(@Nullable String key, @Nullable String value) {
         mBundle.putString(key, value);
         return this;
     }
-
 
     public Postcard withBoolean(@Nullable String key, boolean value) {
         mBundle.putBoolean(key, value);

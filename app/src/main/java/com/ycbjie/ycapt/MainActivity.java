@@ -32,7 +32,12 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.tv_5).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EasyRouter.getsInstance().build(Path.five).navigation();
+                Bundle bundle = new Bundle();
+                bundle.putString("title","标题-------------");
+                EasyRouter.getsInstance()
+                        .build(Path.five)
+                        .withBundle(bundle)
+                        .navigation();
             }
         });
         findViewById(R.id.tv_6).setOnClickListener(new View.OnClickListener() {
