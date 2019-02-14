@@ -233,8 +233,7 @@ public class ARouter {
 
     /**
      * 注入
-     *
-     * @param instance
+     * @param instance              activity上下文
      */
     public void inject(Activity instance) {
         ExtraManager.getInstance().loadExtras(instance);
