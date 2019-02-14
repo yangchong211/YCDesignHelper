@@ -32,10 +32,13 @@ import javax.lang.model.util.Types;
 import static javax.lang.model.element.Modifier.PUBLIC;
 
 /**
- * Author: 夏胜明
- * Date: 2018/8/20 0020
- * Email: xiasem@163.com
- * Description:
+ * <pre>
+ *     @author 杨充
+ *     blog  : https://github.com/yangchong211
+ *     time  : 2017/06/21
+ *     desc  : 自定义路由Processor编译器
+ *     revise:
+ * </pre>
  */
 @AutoService(Processor.class)
 @SupportedSourceVersion(SourceVersion.RELEASE_7)
