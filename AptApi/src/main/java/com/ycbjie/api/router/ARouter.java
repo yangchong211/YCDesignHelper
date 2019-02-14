@@ -184,7 +184,7 @@ public class ARouter {
 
     /**
      * 准备卡片
-     * @param card
+     * @param card                      Postcard信息类
      */
     private void prepareCard(Postcard card) {
         String path = card.getPath();
