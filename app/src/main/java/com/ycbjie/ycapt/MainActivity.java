@@ -62,15 +62,14 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
-        String b = getString(Numbers.STR_TWO);
+
+        int a = getInt(Numbers1.ONE);
     }
 
-    private int getInt(@Numbers.NumbersInt int a){
+    private int getInt(@Numbers1.NumbersInt int a){
         return a;
     }
 
-    private String getString(@Numbers.NumbersString String b){
-        return b;
-    }
+
 
 }

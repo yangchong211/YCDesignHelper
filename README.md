@@ -15,6 +15,53 @@
 
 
 ### 00.注解系列博客汇总
+#### 0.1 注解基础系列博客
+- [01.Annotation注解详细介绍](https://github.com/yangchong211/YCBlogs/blob/master/android/%E6%B3%A8%E8%A7%A3/01.Annotation%E6%B3%A8%E8%A7%A3%E8%AF%A6%E7%BB%86%E4%BB%8B%E7%BB%8D.md)
+    ```
+    1.Annotation库的简单介绍
+    2.@Nullable和@NonNull
+    3.资源类型注释
+    4.类型定义注释
+    5.线程注释
+    6.RGB颜色纸注释
+    7.值范围注释
+    8.权限注释
+    9.重写函数注释
+    10.返回值注释
+    11.@Keep注释
+    12.@SuppressWarnings注解
+    13.其他
+    ```
+- [02.Dagger2深入分析，待更新]()
+- [03.注解详细介绍](https://github.com/yangchong211/YCBlogs/blob/master/android/%E6%B3%A8%E8%A7%A3/03.%E6%B3%A8%E8%A7%A3%E8%AF%A6%E7%BB%86%E4%BB%8B%E7%BB%8D.md)
+    - 什么是注解，注解分类有哪些？自定义注解分类？运行注解案例展示分析，以一个最简单的案例理解注解……使用注解替代枚举，使用注解限定类型
+- [04.APT技术详解](https://github.com/yangchong211/YCBlogs/blob/master/android/%E6%B3%A8%E8%A7%A3/04.APT%E6%8A%80%E6%9C%AF%E8%AF%A6%E8%A7%A3.md)
+    - 什么是apt？理解注解处理器的作用和用途……android-apt被替代？annotationProcessor和apt区别？ 什么是jack编译方式？
+- [06.自定义annotation注解](https://github.com/yangchong211/YCBlogs/blob/master/android/%E6%B3%A8%E8%A7%A3/06.%E8%87%AA%E5%AE%9A%E4%B9%89annotation%E6%B3%A8%E8%A7%A3.md)
+    - @Retention的作用？@Target(ElementType.TYPE)的解释，@Inherited注解可以被继承吗？Annotation里面的方法为何不能是private？
+- [07.注解之兼容kotlin](https://github.com/yangchong211/YCBlogs/blob/master/android/%E6%B3%A8%E8%A7%A3/07.%E6%B3%A8%E8%A7%A3%E4%B9%8B%E5%85%BC%E5%AE%B9kotlin.md)
+    - 后期更新
+- [08.注解之处理器类Processor](https://github.com/yangchong211/YCBlogs/blob/master/android/%E6%B3%A8%E8%A7%A3/08.%E6%B3%A8%E8%A7%A3%E4%B9%8B%E5%A4%84%E7%90%86%E5%99%A8%E7%B1%BBProcessor.md)
+    - 处理器类Processor介绍，重要方法，Element的作用，修饰方法的注解和ExecutableElement，了解修饰属性、类成员的注解和VariableElement……
+- [10.注解遇到问题和解决方案](https://github.com/yangchong211/YCBlogs/blob/master/android/%E6%B3%A8%E8%A7%A3/10.%E6%B3%A8%E8%A7%A3%E9%81%87%E5%88%B0%E9%97%AE%E9%A2%98%E5%92%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88.md)
+    - 无法引入javax包下的类库，成功运行一次，修改代码后再运行就报错
+- [11.注解代替枚举](https://github.com/yangchong211/YCBlogs/blob/master/android/%E6%B3%A8%E8%A7%A3/11.%E6%B3%A8%E8%A7%A3%E4%BB%A3%E6%9B%BF%E6%9E%9A%E4%B8%BE.md)
+    - 在做内存优化时，推荐使用注解代替枚举，因为枚举占用的内存更高，如何说明枚举占用内存高呢？这是为什么呢？
+- [12.注解练习案例开源代码](https://github.com/yangchong211/YCApt)
+    - 注解学习小案例，比较系统性学习注解并且应用实践。简单应用了运行期注解，通过注解实现了setContentView功能；简单应用了编译器注解，通过注解实现了防暴力点击的功能，同时支持设置时间间隔；使用注解替代枚举；使用注解一步步搭建简单路由案例。结合相应的博客，在来一些小案例，从此应该对注解有更加深入的理解……
+
+
+
+#### 0.2 [注解系列博客问题答疑](https://juejin.im/post/5c665c5ae51d450e675331c0)
+- 13.0.0.1 什么是注解？系统内置的标准注解有哪些？SuppressWarnings用过没？Android中提供了哪些与线程相关的注解？
+- 13.0.0.2 什么是apt？apt的难点和优势？什么是注解处理器？抽象处理器中四个方法有何作用？annotationProcessor和apt区别？
+- 13.0.0.3 注解是怎么分类的？自定义注解又是怎么分类的？运行期注解原理是什么？实际注解案例有哪些？
+- 13.0.0.4 在自定义注解中，Annotation里面的方法为何不能是private？Annotation里面的方法参数有哪些？
+- 13.0.0.5 @Inherited是什么意思？注解是不可以继承的，这是为什么？注解的继承这个概念该如何理解？
+- 13.0.0.6 什么是依赖注入？依赖注入案例举例说明，有哪些方式，具备什么优势？依赖查找和依赖注入有什么区别？
+- 13.0.0.7 路由框架为何需要依赖注入，不用的话行不行？路由用什么方式注入，这些注入方式各具何特点，为何选择注解注入？
+- 13.0.0.8 实际开发中使用到注解有哪些，使用注解替代枚举？如何通过注解限定传入的类型？为何说枚举损耗性能？
+
 
 
 ### 01.什么是apt
