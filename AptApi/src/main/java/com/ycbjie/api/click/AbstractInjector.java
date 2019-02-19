@@ -12,9 +12,17 @@ package com.ycbjie.api.click;
  */
 public interface AbstractInjector<T> {
 
-    //注射代码
+    /**
+     * 注射代码
+     * @param finder            finder
+     * @param target            target
+     * @param source            source
+     */
     void inject(Finder finder, T target, Object source);
 
-    //设置间隔时间
+    /**
+     * 设置间隔时间
+     * @param time              time
+     */
     void setIntervalTime(long time);
 }

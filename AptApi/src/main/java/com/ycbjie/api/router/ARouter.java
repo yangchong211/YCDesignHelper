@@ -28,12 +28,23 @@ import java.util.Map;
 import java.util.Set;
 
 
-
+/**
+ * <pre>
+ *     @author 杨充
+ *     blog  : https://github.com/yangchong211
+ *     time  : 2017/06/21
+ *     desc  : 路由调用类
+ *     revise:
+ * </pre>
+ */
 public class ARouter {
 
-    private static final String TAG = "EasyRouter";
-    private static final String ROUTE_ROOT_PACKAGE = "com.ycbjie.compiler.routes";
-    private static final String SDK_NAME = "EaseRouter";
+    private static final String TAG = "ARouter";
+    /**
+     * 注意这个是注解生成代码的路径
+     */
+    private static final String ROUTE_ROOT_PACKAGE = "com.ycbjie.api.router.routes";
+    private static final String SDK_NAME = "ARouter";
     private static final String SEPARATOR = "_";
     private static final String SUFFIX_ROOT = "Root";
 
@@ -71,15 +82,23 @@ public class ARouter {
         //获得所有 apt生成的路由类的全类名 (路由表)
         Set<String> routerMap = ClassUtils.getFileNameByPackageName(mContext, ROUTE_ROOT_PACKAGE);
         for (String className : routerMap) {
-            if (className.startsWith(ROUTE_ROOT_PACKAGE + "." + SDK_NAME + SEPARATOR + SUFFIX_ROOT)) {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(ROUTE_ROOT_PACKAGE);
+            stringBuilder.append(".");
+            stringBuilder.append(SDK_NAME);
+            stringBuilder.append(SEPARATOR);
+            stringBuilder.append(SUFFIX_ROOT);
+            String s = stringBuilder.toString();
+            Log.d(TAG,"className-----------"+s);
+            if (className.startsWith(s)) {
                 //root中注册的是分组信息 将分组信息加入仓库中
-                ((IRouteRoot) Class.forName(className).getConstructor().newInstance()).loadInto(Warehouse.groupsIndex);
+                Object o = Class.forName(className).getConstructor().newInstance();
+                ((IRouteRoot) o).loadInto(Warehouse.groupsIndex);
             }
         }
         for (Map.Entry<String, Class<? extends IRouteGroup>> stringClassEntry : Warehouse.groupsIndex.entrySet()) {
             Log.d(TAG, "Root映射表[ " + stringClassEntry.getKey() + " : " + stringClassEntry.getValue() + "]");
         }
-
     }
 
     public Postcard build(String path) {
@@ -152,20 +171,22 @@ public class ARouter {
                         //可能需要返回码
                         if (requestCode > 0) {
                             if (currentContext instanceof Activity){
-                                ActivityCompat.startActivityForResult((Activity) currentContext, intent,
-                                        requestCode, postcard.getOptionsBundle());
+                                ActivityCompat.startActivityForResult((Activity)
+                                                currentContext, intent, requestCode,
+                                        postcard.getOptionsBundle());
                             }
                         } else {
                             ActivityCompat.startActivity(currentContext, intent, postcard
                                     .getOptionsBundle());
                         }
 
-                        if ((0 != postcard.getEnterAnim() || 0 != postcard.getExitAnim()) &&
-                                currentContext instanceof Activity) {
-                            //老版本
-                            ((Activity) currentContext).overridePendingTransition(postcard
-                                            .getEnterAnim()
-                                    , postcard.getExitAnim());
+                        if (currentContext instanceof Activity){
+                            if ((0 != postcard.getEnterAnim() || 0 != postcard.getExitAnim())) {
+                                //老版本
+                                ((Activity) currentContext).overridePendingTransition(postcard
+                                                .getEnterAnim()
+                                        , postcard.getExitAnim());
+                            }
                         }
                         //跳转完成
                         if (null != callback) {

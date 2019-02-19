@@ -13,7 +13,15 @@ import com.ycbjie.api.router.inter.IService;
 
 import java.util.ArrayList;
 
-
+/**
+ * <pre>
+ *     @author 杨充
+ *     blog  : https://github.com/yangchong211
+ *     time  : 2017/06/21
+ *     desc  : 信息类
+ *     revise:
+ * </pre>
+ */
 public class Postcard extends RouteMeta {
 
     private Bundle mBundle;

@@ -7,7 +7,15 @@ import com.ycbjie.api.router.inter.IExtra;
 
 import java.lang.reflect.Constructor;
 
-
+/**
+ * <pre>
+ *     @author 杨充
+ *     blog  : https://github.com/yangchong211
+ *     time  : 2017/06/21
+ *     desc  : 注入manager
+ *     revise:
+ * </pre>
+ */
 public class ExtraManager {
 
     private static final String SUFFIX_AUTO_WIRED = "_Extra";
