@@ -96,7 +96,7 @@ public class ExtraProcessor extends AbstractProcessor {
 
     private void generateAutoWired() throws IOException {
         TypeMirror typeActivity = elementUtils.getTypeElement(RouterConstants.ACTIVITY).asType();
-        TypeElement iExtra = elementUtils.getTypeElement(RouterConstants.IEXTRA);
+        TypeElement iExtra = elementUtils.getTypeElement(RouterConstants.I_EXTRA);
 
         if (!RouterUtils.isEmpty(parentAndChild)) {
             // 参数 Object target

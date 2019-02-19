@@ -16,11 +16,11 @@ public class RouterConstants {
 
 
     public static final ClassName ROUTER = ClassName.get(
-            "com.ycbjie.api.router", "EasyRouter");
+            "com.ycbjie.api.router", "ARouter");
     public static final String I_SERVICE = "com.ycbjie.api.router.inter.IService";
-    public static final String IROUTE_GROUP = "com.ycbjie.api.router.inter.IRouteGroup";
-    public static final String IROUTE_ROOT = "com.ycbjie.api.router.inter.IRouteRoot";
-    public static final String IEXTRA = "com.ycbjie.api.router.inter.IExtra";
+    public static final String I_ROUTE_GROUP = "com.ycbjie.api.router.inter.IRouteGroup";
+    public static final String I_ROUTE_ROOT = "com.ycbjie.api.router.inter.IRouteRoot";
+    public static final String I_EXTRA = "com.ycbjie.api.router.inter.IExtra";
     public static final String ANN_TYPE_EXTRA = "com.ycbjie.annotation.router.Extra";
     public static final String PACKAGE_OF_GENERATE_FILE = "com.ycbjie.api.router.routes";
 

@@ -8,7 +8,6 @@ import com.squareup.javapoet.ParameterSpec;
 import com.squareup.javapoet.ParameterizedTypeName;
 import com.squareup.javapoet.TypeSpec;
 import com.squareup.javapoet.WildcardTypeName;
-import com.ycbjie.annotation.click.OnceClick;
 import com.ycbjie.annotation.router.RouteMeta;
 import com.ycbjie.annotation.router.Router;
 
@@ -185,8 +184,8 @@ public class RouterProcessor extends AbstractProcessor {
 
 
         //获取
-        TypeElement iRouteGroup = elementUtils.getTypeElement(RouterConstants.IROUTE_GROUP);
-        TypeElement iRouteRoot = elementUtils.getTypeElement(RouterConstants.IROUTE_ROOT);
+        TypeElement iRouteGroup = elementUtils.getTypeElement(RouterConstants.I_ROUTE_GROUP);
+        TypeElement iRouteRoot = elementUtils.getTypeElement(RouterConstants.I_ROUTE_ROOT);
 
         //生成Group记录分组表
         generatedGroup(iRouteGroup);
