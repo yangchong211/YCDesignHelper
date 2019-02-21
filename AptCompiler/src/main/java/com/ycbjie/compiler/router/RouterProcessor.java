@@ -79,11 +79,9 @@ public class RouterProcessor extends AbstractProcessor {
         elementUtils = processingEnvironment.getElementUtils();
         //文件生成器 类/资源
         filer = processingEnvironment.getFiler();
-        //Locale locale = processingEnvironment.getLocale();
         Messager messager = processingEnvironment.getMessager();
         log = RouterLog.newLog(messager);
         Map<String, String> options = processingEnvironment.getOptions();
-        //SourceVersion sourceVersion = processingEnvironment.getSourceVersion();
         //type(类信息)工具类
         typeUtils = processingEnvironment.getTypeUtils();
 
