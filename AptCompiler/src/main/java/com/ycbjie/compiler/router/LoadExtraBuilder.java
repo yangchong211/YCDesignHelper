@@ -103,8 +103,8 @@ public class LoadExtraBuilder {
             statement += "getStringExtra($S)";
         } else if (typeUtils.isSubtype(typeMirror, iServiceType)) {
             statement = "t." + fieldName + " = ($T) $T.getInstance().build($S).navigation()";
-            ClassName ROUTER = ClassName.get(RouterConstants.PATH, RouterConstants.PROJECT);
-            builder.addStatement(statement, TypeName.get(element.asType()), ROUTER, extraName);
+            ClassName router = ClassName.get(RouterConstants.PATH, RouterConstants.PROJECT);
+            builder.addStatement(statement, TypeName.get(element.asType()), router, extraName);
             return;
         } else {
             //List
