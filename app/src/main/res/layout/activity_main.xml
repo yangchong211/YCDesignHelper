@@ -63,4 +63,13 @@
         android:padding="10dp"
         android:text="6.测试路由跳转6页面"/>
 
+    <TextView
+        android:id="@+id/tv_7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorAccent"
+        android:padding="10dp"
+        android:text="7.测试路由跳转5页面，简易代码逻辑"/>
+
 </LinearLayout>

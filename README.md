@@ -244,14 +244,11 @@
 - [9.1 搭建路由条件]()
     - 为何需要路由？实现路由方式有哪些，这些方式各有何优缺点？使用注解实现路由需要具备的条件以及简单原理分析……
 - [9.2 通过注解去实现路由跳转]()
+    - 自定义Router注解，Router注解里有path和group，这便是仿照ARouter对路由进行分组。然后看看注解生成的代码，手写路由跳转代码。
+- [9.3 自定义路由Processor编译器](https://github.com/yangchong211/YCBlogs/blob/master/android/%E6%B3%A8%E8%A7%A3/08.%E6%B3%A8%E8%A7%A3%E4%B9%8B%E5%A4%84%E7%90%86%E5%99%A8%E7%B1%BBProcessor.md)
+    - Processor介绍，重要方法，Element的作用，修饰方法的注解和ExecutableElement
+- [9.4 利用apt生成路由映射文件]()
     -
-
-#### 9.3 自定义路由Processor编译器
-
-
-#### 9.4 利用apt生成路由映射文件
-
-
 #### 9.5 路由框架的设计
 
 
@@ -268,6 +265,11 @@
 
 
 ### 20.其他说明
+#### 00.参考案例
+- https://github.com/Xiasm/EasyRouter
+
+
+
 #### 01.关于博客汇总链接
 - 1.[技术博客汇总](https://www.jianshu.com/p/614cb839182c)
 - 2.[开源项目汇总](https://blog.csdn.net/m0_37700275/article/details/80863574)

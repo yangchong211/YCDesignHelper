@@ -6,9 +6,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.ycbjie.annotation.router.RouteMeta;
 import com.ycbjie.api.router.ARouter;
 import com.ycbjie.api.router.callback.NavigationCallback;
 import com.ycbjie.api.router.info.Postcard;
+import com.ycbjie.api.router.inter.IRouteGroup;
+import com.ycbjie.api.router.routes.ARouter_Root_app;
+
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -62,6 +67,12 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
+        findViewById(R.id.tv_7).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                test();
+            }
+        });
 
         int a = getInt(Numbers1.ONE);
     }
@@ -71,5 +82,29 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * 注解生成的代码，在build/generated/source/apt/debug/
+     * 模拟跳转到FiveActivity页面
+     */
+    public void test() {
+        ARouter_Root_app rootApp = new ARouter_Root_app();
+        HashMap<String, Class<? extends IRouteGroup>> rootMap = new HashMap<>();
+        rootApp.loadInto(rootMap);
+        //得到/main分组
+        Class<? extends IRouteGroup> aClass = rootMap.get("main");
+        try {
+            HashMap<String, RouteMeta> groupMap = new HashMap<>();
+            aClass.newInstance().loadInto(groupMap);
+            //得到MainActivity
+            RouteMeta main = groupMap.get("/main/FiveActivity");
+            Class<?> clazz = main.getDestination();
+            Intent intent = new Intent(this, clazz);
+            startActivity(intent);
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
