@@ -122,11 +122,6 @@ public class RouterProcessor extends AbstractProcessor {
         return false;
     }
 
-    /*@Override
-    public Set<String> getSupportedOptions() {
-        return super.getSupportedOptions();
-    }*/
-
     /**
      * 注册自定义的注解名称
      * 通过重写该方法，告知Processor哪些注解需要处理。返回一个Set集合，集合内容为自定义注解的包名+类名。
