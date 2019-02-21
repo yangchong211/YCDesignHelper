@@ -241,9 +241,11 @@
     ```
 
 ### 09.使用注解搭建路由[综合案例]
-- [9.1 搭建路由条件]()
+- [9.1 ARouter路由解析](https://github.com/yangchong211/YCBlogs/blob/master/android/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/03.ARouter%E8%B7%AF%E7%94%B1%E8%A7%A3%E6%9E%90.md)
+    - 比较详细地分析了阿里路由库
+- [9.1 搭建路由条件](https://github.com/yangchong211/YCBlogs/blob/master/android/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/11.%E8%AE%BE%E8%AE%A1%E8%B7%AF%E7%94%B1%E6%9D%A1%E4%BB%B6.md)
     - 为何需要路由？实现路由方式有哪些，这些方式各有何优缺点？使用注解实现路由需要具备的条件以及简单原理分析……
-- [9.2 通过注解去实现路由跳转]()
+- [9.2 通过注解去实现路由跳转](https://github.com/yangchong211/YCBlogs/blob/master/android/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/12.%E9%80%9A%E8%BF%87Router%E6%B3%A8%E8%A7%A3%E5%AE%9E%E7%8E%B0%E8%B7%AF%E7%94%B1%E8%B7%B3%E8%BD%AC.md)
     - 自定义Router注解，Router注解里有path和group，这便是仿照ARouter对路由进行分组。然后看看注解生成的代码，手写路由跳转代码。
 - [9.3 自定义路由Processor编译器](https://github.com/yangchong211/YCBlogs/blob/master/android/%E6%B3%A8%E8%A7%A3/08.%E6%B3%A8%E8%A7%A3%E4%B9%8B%E5%A4%84%E7%90%86%E5%99%A8%E7%B1%BBProcessor.md)
     - Processor介绍，重要方法，Element的作用，修饰方法的注解和ExecutableElement
@@ -266,7 +268,14 @@
 
 ### 20.其他说明
 #### 00.参考案例
+- https://www.jianshu.com/p/3358bbb84aa5
+- https://www.jianshu.com/p/200c6cc6adaf
+- https://github.com/joyrun/ActivityRouter
+- https://github.com/BaronZ88/Router
+- https://github.com/alibaba/ARouter
 - https://github.com/Xiasm/EasyRouter
+- https://www.jianshu.com/p/8a3eeeaf01e8
+- https://www.jianshu.com/p/e2d93259dc34
 
 
 
