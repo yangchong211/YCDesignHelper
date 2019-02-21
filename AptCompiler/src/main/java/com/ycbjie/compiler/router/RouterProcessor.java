@@ -92,9 +92,9 @@ public class RouterProcessor extends AbstractProcessor {
             moduleName = options.get(RouterConstants.ARGUMENTS_NAME);
         }
         if (RouterUtils.isEmpty(moduleName)) {
-            throw new EmptyException("Not set processor moduleName option !");
+            throw new EmptyException("RouterProcessor Not set processor moduleName option !");
         }
-        log.i("init RouterProcessor " + moduleName + " success !");
+        log.i("RouterProcessor init RouterProcessor " + moduleName + " success !");
     }
 
     /**
@@ -113,7 +113,8 @@ public class RouterProcessor extends AbstractProcessor {
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
         if (!RouterUtils.isEmpty(annotations)) {
-            //被Route注解的节点集合
+            log.i("RouterProcessor Router 注解的节点集合");
+            //被 Router 注解的节点集合
             Set<? extends Element> rootElements = roundEnv.getElementsAnnotatedWith(Router.class);
             if (!RouterUtils.isEmpty(rootElements)) {
                 processorRouter(rootElements);
@@ -166,7 +167,7 @@ public class RouterProcessor extends AbstractProcessor {
             RouteMeta routeMeta;
             //类信息
             TypeMirror typeMirror = element.asType();
-            log.i("Route class:" + typeMirror.toString());
+            log.i("RouterProcessor Route class:" + typeMirror.toString());
             //获取注解
             Router route = element.getAnnotation(Router.class);
             if (typeUtils.isSubtype(typeMirror, activity.asType())) {
@@ -174,7 +175,7 @@ public class RouterProcessor extends AbstractProcessor {
             } else if (typeUtils.isSubtype(typeMirror, service.asType())) {
                 routeMeta = new RouteMeta(RouteMeta.Type.I_SERVICE, route, element);
             } else {
-                throw new RuntimeException("Just support Activity or IService Route: " + element);
+                throw new RuntimeException("RouterProcessor Just support Activity or IService Route: " + element);
             }
             categories(routeMeta);
         }
