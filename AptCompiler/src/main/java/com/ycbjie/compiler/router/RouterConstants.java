@@ -1,8 +1,6 @@
 package com.ycbjie.compiler.router;
 
 
-import com.squareup.javapoet.ClassName;
-
 /**
  * <pre>
  *     @author 杨充
@@ -14,9 +12,12 @@ import com.squareup.javapoet.ClassName;
  */
 public class RouterConstants {
 
+    public static final String SEPARATOR = "_";
+    public static final String PROJECT = "ARouter";
+    public static final String NAME_OF_GROUP = PROJECT + SEPARATOR + "Group" + SEPARATOR;
+    public static final String NAME_OF_ROOT = PROJECT + SEPARATOR + "Root" + SEPARATOR;
 
-    public static final ClassName ROUTER = ClassName.get(
-            "com.ycbjie.api.router", "ARouter");
+    public static final String PATH = "com.ycbjie.api.router";
     public static final String I_SERVICE = "com.ycbjie.api.router.inter.IService";
     public static final String I_ROUTE_GROUP = "com.ycbjie.api.router.inter.IRouteGroup";
     public static final String I_ROUTE_ROOT = "com.ycbjie.api.router.inter.IRouteRoot";
@@ -29,13 +30,6 @@ public class RouterConstants {
 
     public static final String METHOD_LOAD_INTO = "loadInto";
     public static final String METHOD_LOAD_EXTRA = "loadExtra";
-
-
-    public static final String SEPARATOR = "_";
-    public static final String PROJECT = "EaseRouter";
-    public static final String NAME_OF_GROUP = PROJECT + SEPARATOR + "Group" + SEPARATOR;
-    public static final String NAME_OF_ROOT = PROJECT + SEPARATOR + "Root" + SEPARATOR;
-
 
 
     public static final String PARCELABLE = "android.os.Parcelable";

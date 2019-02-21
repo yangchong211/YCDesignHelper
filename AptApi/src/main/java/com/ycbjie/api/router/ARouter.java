@@ -47,12 +47,14 @@ public class ARouter {
     private static final String SDK_NAME = "ARouter";
     private static final String SEPARATOR = "_";
     private static final String SUFFIX_ROOT = "Root";
+    private static final String SPLITE = "/";
 
     private static ARouter sInstance;
     private static Application mContext;
     private Handler mHandler;
 
     private ARouter() {
+        //创建handler对象
         mHandler = new Handler(Looper.getMainLooper());
     }
 
@@ -101,6 +103,13 @@ public class ARouter {
         }
     }
 
+    /**
+     * 传入path路径
+     * 比如：path="/main/FiveActivity"
+     * 那么path="/main/FiveActivity"              group="main"
+     * @param path                      path路径
+     * @return                          Postcard信息类
+     */
     public Postcard build(String path) {
         if (TextUtils.isEmpty(path)) {
             throw new RuntimeException("路由地址无效!");
@@ -109,10 +118,19 @@ public class ARouter {
         }
     }
 
+    /**
+     * 传入path路径
+     * 比如：path="/main/FiveActivity"
+     * 那么path="/main/FiveActivity"              group="main"
+     * @param path                      path路径
+     * @param group                     group组
+     * @return                          Postcard信息类
+     */
     private Postcard build(String path, String group) {
         if (TextUtils.isEmpty(path) || TextUtils.isEmpty(group)) {
             throw new RuntimeException("路由地址无效!");
         } else {
+            Log.d(TAG,"传入path路径----"+path+"--group组---"+group);
             return new Postcard(path, group);
         }
     }
@@ -139,7 +157,8 @@ public class ARouter {
         }
     }
 
-    public Object navigation(Context context, final Postcard postcard, final int requestCode, final NavigationCallback callback) {
+    public Object navigation(Context context, final Postcard postcard, final int requestCode,
+                             final NavigationCallback callback) {
         try {
             prepareCard(postcard);
         }catch (NoRouteFoundException e) {
@@ -155,45 +174,9 @@ public class ARouter {
         }
 
         switch (postcard.getType()) {
+            //跳转到activity
             case ACTIVITY:
-                final Context currentContext = null == context ? mContext : context;
-                final Intent intent = new Intent(currentContext, postcard.getDestination());
-                intent.putExtras(postcard.getExtras());
-                int flags = postcard.getFlags();
-                if (-1 != flags) {
-                    intent.setFlags(flags);
-                } else if (!(currentContext instanceof Activity)) {
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                }
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        //可能需要返回码
-                        if (requestCode > 0) {
-                            if (currentContext instanceof Activity){
-                                ActivityCompat.startActivityForResult((Activity)
-                                                currentContext, intent, requestCode,
-                                        postcard.getOptionsBundle());
-                            }
-                        } else {
-                            ActivityCompat.startActivity(currentContext, intent, postcard
-                                    .getOptionsBundle());
-                        }
-
-                        if (currentContext instanceof Activity){
-                            if ((0 != postcard.getEnterAnim() || 0 != postcard.getExitAnim())) {
-                                //老版本
-                                ((Activity) currentContext).overridePendingTransition(postcard
-                                                .getEnterAnim()
-                                        , postcard.getExitAnim());
-                            }
-                        }
-                        //跳转完成
-                        if (null != callback) {
-                            callback.onArrival(postcard);
-                        }
-                    }
-                });
+                startActivity(context,postcard,requestCode,callback);
                 break;
             case I_SERVICE:
                 return postcard.getService();
@@ -201,6 +184,49 @@ public class ARouter {
                 break;
         }
         return null;
+    }
+
+    /**
+     * 跳转到activity
+     */
+    private void startActivity(Context context, final Postcard postcard,
+                               final int requestCode, final NavigationCallback callback) {
+        final Context currentContext = null == context ? mContext : context;
+        final Intent intent = new Intent(currentContext, postcard.getDestination());
+        intent.putExtras(postcard.getExtras());
+        int flags = postcard.getFlags();
+        if (-1 != flags) {
+            intent.setFlags(flags);
+        } else if (!(currentContext instanceof Activity)) {
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        }
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                //可能需要返回码
+                if (requestCode > 0) {
+                    if (currentContext instanceof Activity){
+                        ActivityCompat.startActivityForResult((Activity) currentContext,
+                                intent, requestCode, postcard.getOptionsBundle());
+                    }
+                } else {
+                    ActivityCompat.startActivity(currentContext, intent, postcard
+                            .getOptionsBundle());
+                }
+
+                if (currentContext instanceof Activity){
+                    if ((0 != postcard.getEnterAnim() || 0 != postcard.getExitAnim())) {
+                        //老版本
+                        ((Activity) currentContext).overridePendingTransition(
+                                postcard.getEnterAnim(), postcard.getExitAnim());
+                    }
+                }
+                //跳转完成
+                if (null != callback) {
+                    callback.onArrival(postcard);
+                }
+            }
+        });
     }
 
     /**
