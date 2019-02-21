@@ -42,6 +42,9 @@ import static javax.lang.model.element.Modifier.PUBLIC;
  */
 @AutoService(Processor.class)
 @SupportedSourceVersion(SourceVersion.RELEASE_7)
+/**
+ * 注册给哪些注解的  替代 {@link AbstractProcessor#getSupportedAnnotationTypes()} 函数
+ */
 @SupportedAnnotationTypes({RouterConstants.ANN_TYPE_EXTRA})
 public class ExtraProcessor extends AbstractProcessor {
 

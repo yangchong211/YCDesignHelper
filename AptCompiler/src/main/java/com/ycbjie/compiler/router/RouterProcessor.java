@@ -50,11 +50,8 @@ import javax.lang.model.util.Types;
  处理器接收的参数 替代 {@link AbstractProcessor#getSupportedOptions()} 函数
  */
 @SupportedOptions(RouterConstants.ARGUMENTS_NAME)
-/**
- * 注册给哪些注解的  替代 {@link AbstractProcessor#getSupportedAnnotationTypes()} 函数
- */
-//@SupportedAnnotationTypes(RouterConstants.ANNOTATION_TYPE_ROUTE)
 public class RouterProcessor extends AbstractProcessor {
+
 
     /**
      * key:组名 value:类名
@@ -104,14 +101,14 @@ public class RouterProcessor extends AbstractProcessor {
      * 所有的注解处理都是从这个方法开始的，你可以理解为，当APT找到所有需要处理的注解后，会回调这个方法，
      * 你可以通过这个方法的参数，拿到你所需要的信息。
      *
-     * 参数 Set<? extends TypeElement> annotations ：将返回所有的由该Processor处理，并待处理的 Annotations。
+     * 参数Set<? extends TypeElement> annotations：将返回所有由该Processor处理，并待处理的Annotations。
      * (属于该Processor处理的注解，但并未被使用，不存在与这个集合里)
      *
      * 参数 RoundEnvironment roundEnv ：表示当前或是之前的运行环境，可以通过该对象查找找到的注解。
      * @param annotations               annotations
      * @param roundEnv                  roundEnv
      * @return                          返回值 表示这组 annotations 是否被这个 Processor 接受，
-     *                                  如果接受true后续子的 Processor 不会再对这个 Annotations 进行处理
+     *                                  如果接受true后续子的 Processor不会再对这个Annotations进行处理
      */
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
