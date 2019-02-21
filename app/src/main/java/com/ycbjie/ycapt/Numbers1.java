@@ -16,18 +16,4 @@ public class Numbers1 {
     public @interface NumbersInt {
 
     }
-
-    private void number(@NumbersInt int number){
-        switch (number){
-            case ONE:
-
-                break;
-            case TWO:
-
-                break;
-            case THREE:
-
-                break;
-        }
-    }
 }
