@@ -18,7 +18,10 @@ import javax.lang.model.element.Element;
 public class RouteMeta {
 
     public enum Type {
-        ACTIVITY , I_SERVICE
+        //activity
+        ACTIVITY ,
+        //service
+        I_SERVICE
     }
 
     private Type type;
