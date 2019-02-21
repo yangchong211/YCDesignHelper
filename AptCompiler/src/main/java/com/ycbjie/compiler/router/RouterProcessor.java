@@ -182,7 +182,6 @@ public class RouterProcessor extends AbstractProcessor {
             categories(routeMeta);
         }
 
-
         //获取
         TypeElement iRouteGroup = elementUtils.getTypeElement(RouterConstants.I_ROUTE_GROUP);
         TypeElement iRouteRoot = elementUtils.getTypeElement(RouterConstants.I_ROUTE_ROOT);
