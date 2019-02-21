@@ -5,6 +5,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v4.app.ActivityCompat;
@@ -157,6 +158,14 @@ public class ARouter {
         }
     }
 
+    /**
+     * 最终会调用这个方法
+     * @param context                   上下文
+     * @param postcard                  Postcard
+     * @param requestCode               请求码
+     * @param callback                  回调callback
+     * @return
+     */
     public Object navigation(Context context, final Postcard postcard, final int requestCode,
                              final NavigationCallback callback) {
         try {
@@ -203,15 +212,15 @@ public class ARouter {
         mHandler.post(new Runnable() {
             @Override
             public void run() {
+                Bundle bundle = postcard.getOptionsBundle();
                 //可能需要返回码
                 if (requestCode > 0) {
                     if (currentContext instanceof Activity){
                         ActivityCompat.startActivityForResult((Activity) currentContext,
-                                intent, requestCode, postcard.getOptionsBundle());
+                                intent, requestCode, bundle);
                     }
                 } else {
-                    ActivityCompat.startActivity(currentContext, intent, postcard
-                            .getOptionsBundle());
+                    ActivityCompat.startActivity(currentContext, intent, bundle);
                 }
 
                 if (currentContext instanceof Activity){
