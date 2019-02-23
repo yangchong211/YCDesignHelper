@@ -96,9 +96,9 @@
 ### 03.项目目录结构
 - 项目目录结构如图：
     - app：Demo
-    - OnceClickAnnotation：java Library主要放一些项目中需要用到的自定义注解及相关代码
-    - OnceClickApi：Android Library. OnceClick是我们真正对外发布并交由第三方使用的库，它引用了apt-jar包
-    - OnceClickCompiler：java Library主要是应用apt技术处理注解，生成相关代码或者相关源文件，是核心所在。
+    - AptAnnotation：java Library主要放一些项目中需要用到的自定义注解及相关代码
+    - AptApi：Android Library. OnceClick是我们真正对外发布并交由第三方使用的库，它引用了apt-jar包
+    - AptCompiler：java Library主要是应用apt技术处理注解，生成相关代码或者相关源文件，是核心所在。
 
 
 ### 04.该案例作用
@@ -251,17 +251,14 @@
     - Processor介绍，重要方法，Element的作用，修饰方法的注解和ExecutableElement
 - [9.4 利用apt生成路由映射文件]()
     -
-#### 9.5 路由框架的设计
-
-
+- [9.5 路由框架的设计]()
+    -
 #### 9.6 路由参数的传递和接收
 
-
-#### 9.7 为何需要依赖注入
-
-
-#### 9.8 Activity属性注入
-
+- [9.7 为何需要依赖注入]()
+    -
+- [9.8 Activity属性注入]()
+    -
 
 #### 9.9 路由开源库的使用
 
