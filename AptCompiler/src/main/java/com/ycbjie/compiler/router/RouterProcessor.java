@@ -155,7 +155,9 @@ public class RouterProcessor extends AbstractProcessor {
     private void processorRouter(Set<? extends Element> rootElements) {
         //首先获取activity信息
         TypeElement activity = elementUtils.getTypeElement(RouterConstants.ACTIVITY);
+        //获取service信息
         TypeElement service = elementUtils.getTypeElement(RouterConstants.I_SERVICE);
+        //被 Router 注解的节点集合
         for (Element element : rootElements) {
             RouteMeta routeMeta;
             //类信息
@@ -170,6 +172,7 @@ public class RouterProcessor extends AbstractProcessor {
             } else {
                 throw new RuntimeException("RouterProcessor Just support Activity or IService Route: " + element);
             }
+            //检查是否配置 group 如果没有配置 则从path截取出组名
             categories(routeMeta);
         }
 
