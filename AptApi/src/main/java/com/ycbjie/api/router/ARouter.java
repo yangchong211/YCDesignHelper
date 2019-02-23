@@ -142,11 +142,11 @@ public class ARouter {
      * @return                          字符串
      */
     private String extractGroup(String path) {
-        if (TextUtils.isEmpty(path) || !path.startsWith("/")) {
+        if (TextUtils.isEmpty(path) || !path.startsWith(SPLITE)) {
             throw new RuntimeException(path + " : 不能提取group.");
         }
         try {
-            String defaultGroup = path.substring(1, path.indexOf("/", 1));
+            String defaultGroup = path.substring(1, path.indexOf(SPLITE, 1));
             if (TextUtils.isEmpty(defaultGroup)) {
                 throw new RuntimeException(path + " : 不能提取group.");
             } else {
