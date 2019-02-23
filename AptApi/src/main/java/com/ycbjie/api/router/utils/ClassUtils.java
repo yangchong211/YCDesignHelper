@@ -76,6 +76,8 @@ public class ClassUtils {
                 .newDefaultPoolExecutor(paths.size());
         for (final String path : paths) {
             if (threadPoolExecutor != null) {
+                //思考一下，这里为何要使用线程池
+                //关于线程池：https://github.com/yangchong211/YCThreadPool
                 threadPoolExecutor.execute(new Runnable() {
                     @Override
                     public void run() {

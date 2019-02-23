@@ -4,7 +4,16 @@ import javax.annotation.processing.Messager;
 import javax.tools.Diagnostic;
 
 
-public class RouterLog {
+/**
+ * <pre>
+ *     @author 杨充
+ *     blog  : https://github.com/yangchong211
+ *     time  : 2018/12/21
+ *     desc  : 工具类
+ *     revise: https://github.com/yangchong211/YCApt
+ * </pre>
+ */
+public  class RouterLog {
 
     private Messager messager;
 
