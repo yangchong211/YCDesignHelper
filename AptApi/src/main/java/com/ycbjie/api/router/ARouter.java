@@ -81,7 +81,10 @@ public class ARouter {
     /**
      * 分组表制作
      */
-    private static void loadInfo() throws PackageManager.NameNotFoundException, InterruptedException, ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+    private static void loadInfo() throws PackageManager.NameNotFoundException,
+            InterruptedException, ClassNotFoundException,
+            NoSuchMethodException, IllegalAccessException,
+            InvocationTargetException, InstantiationException {
         //获得所有 apt生成的路由类的全类名 (路由表)
         Set<String> routerMap = ClassUtils.getFileNameByPackageName(mContext, ROUTE_ROOT_PACKAGE);
         for (String className : routerMap) {
@@ -99,8 +102,10 @@ public class ARouter {
                 ((IRouteRoot) o).loadInto(Warehouse.groupsIndex);
             }
         }
-        for (Map.Entry<String, Class<? extends IRouteGroup>> stringClassEntry : Warehouse.groupsIndex.entrySet()) {
-            Log.d(TAG, "Root映射表[ " + stringClassEntry.getKey() + " : " + stringClassEntry.getValue() + "]");
+        for (Map.Entry<String, Class<? extends IRouteGroup>> stringClassEntry :
+                Warehouse.groupsIndex.entrySet()) {
+            Log.d(TAG, "Root映射表[ " + stringClassEntry.getKey() + " : "
+                    + stringClassEntry.getValue() + "]");
         }
     }
 

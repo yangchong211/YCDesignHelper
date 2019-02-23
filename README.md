@@ -331,8 +331,8 @@
                 .withBundle(bundle)
                 .navigation();
         ```
-
-
+    - 路由注解生成的代码位置
+        - ![image](https://upload-images.jianshu.io/upload_images/4432347-94db5b239f2aafef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
 ### 10.其他说明
