@@ -35,7 +35,7 @@ import java.util.Set;
  *     blog  : https://github.com/yangchong211
  *     time  : 2017/06/21
  *     desc  : 路由调用类
- *     revise:
+ *     revise: https://github.com/yangchong211/YCApt
  * </pre>
  */
 public class ARouter {
@@ -71,6 +71,7 @@ public class ARouter {
     public static void init(Application application) {
         mContext = application;
         try {
+            //分组表制作，首先需要在用户使用路由跳转之前把这些路由映射关系拿到手
             loadInfo();
         } catch (Exception e) {
             e.printStackTrace();

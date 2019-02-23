@@ -21,12 +21,20 @@ import java.util.concurrent.ThreadPoolExecutor;
 import dalvik.system.DexFile;
 
 
-
+/**
+ * <pre>
+ *     @author 杨充
+ *     blog  : https://github.com/yangchong211
+ *     time  : 2018/12/21
+ *     desc  : 工具类
+ *     revise: https://github.com/yangchong211/YCApt
+ * </pre>
+ */
 public class ClassUtils {
 
     /**
      * 获得程序所有的apk(instant run会产生很多split apk)
-     * @param context
+     * @param context                       上下文
      * @return
      * @throws PackageManager.NameNotFoundException
      */
@@ -45,19 +53,21 @@ public class ClassUtils {
 
     /**
      * 得到路由表的类名
-     * @param context
-     * @param packageName
+     * @param context                       上下文
+     * @param packageName                   包名
      * @return
      * @throws PackageManager.NameNotFoundException
      * @throws InterruptedException
      */
-    public static Set<String> getFileNameByPackageName(Application context, final String packageName)
+    public static Set<String> getFileNameByPackageName(Application context,
+                                                       final String packageName)
             throws PackageManager.NameNotFoundException, InterruptedException {
         final Set<String> classNames = new HashSet<>();
         List<String> paths = getSourcePaths(context);
         //使用同步计数器判断均处理完成
         final CountDownLatch countDownLatch = new CountDownLatch(paths.size());
-        ThreadPoolExecutor threadPoolExecutor = DefaultPoolExecutor.newDefaultPoolExecutor(paths.size());
+        ThreadPoolExecutor threadPoolExecutor = DefaultPoolExecutor
+                .newDefaultPoolExecutor(paths.size());
         for (final String path : paths) {
             if (threadPoolExecutor != null) {
                 threadPoolExecutor.execute(new Runnable() {
