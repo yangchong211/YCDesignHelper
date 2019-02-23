@@ -176,7 +176,7 @@ public class RouterProcessor extends AbstractProcessor {
             categories(routeMeta);
         }
 
-        //获取
+        //获取接口
         TypeElement iRouteGroup = elementUtils.getTypeElement(RouterConstants.I_ROUTE_GROUP);
         TypeElement iRouteRoot = elementUtils.getTypeElement(RouterConstants.I_ROUTE_ROOT);
 
@@ -262,21 +262,24 @@ public class RouterProcessor extends AbstractProcessor {
                         routeMeta.getPath(),
                         routeMeta.getGroup());
             }
+            //生成ARouter_Root_xx类
             String groupClassName = RouterConstants.NAME_OF_GROUP + groupName;
             TypeSpec typeSpec = TypeSpec.classBuilder(groupClassName)
                     .addSuperinterface(ClassName.get(iRouteGroup))
                     .addModifiers(Modifier.PUBLIC)
                     .addMethod(methodBuilder.build())
                     .build();
-            JavaFile javaFile = JavaFile.builder(RouterConstants.PACKAGE_OF_GENERATE_FILE,
-                    typeSpec).build();
+            //指定路径：com.ycbjie.api.router.routes
+            JavaFile.Builder builder = JavaFile.builder(RouterConstants.PACKAGE_OF_GENERATE_FILE,
+                    typeSpec);
+            JavaFile javaFile = builder.build();
             try {
+                //写入文件
                 javaFile.writeTo(filer);
             } catch (IOException e) {
                 e.printStackTrace();
             }
             rootMap.put(groupName, groupClassName);
-
         }
     }
 
