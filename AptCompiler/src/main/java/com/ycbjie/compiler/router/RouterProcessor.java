@@ -286,8 +286,8 @@ public class RouterProcessor extends AbstractProcessor {
 
     /**
      * 生成Root类  作用：记录<分组，对应的Group类>
-     * @param iRouteRoot
-     * @param iRouteGroup
+     * @param iRouteRoot                    iRouteRoot
+     * @param iRouteGroup                   iRouteGroup
      */
     private void generatedRoot(TypeElement iRouteRoot, TypeElement iRouteGroup) {
         //创建参数类型 Map<String,Class<? extends IRouteGroup>> routes>
@@ -317,7 +317,9 @@ public class RouterProcessor extends AbstractProcessor {
                 .addModifiers(Modifier.PUBLIC)
                 .addMethod(methodBuilder.build())
                 .build();
-        JavaFile build = JavaFile.builder(RouterConstants.PACKAGE_OF_GENERATE_FILE, typeSpec).build();
+        //指定路径：com.ycbjie.api.router.routes
+        JavaFile.Builder builder = JavaFile.builder(RouterConstants.PACKAGE_OF_GENERATE_FILE, typeSpec);
+        JavaFile build = builder.build();
         try {
             build.writeTo(filer);
             log.i("Generated RouteRoot：" + RouterConstants.PACKAGE_OF_GENERATE_FILE + "." + className);
