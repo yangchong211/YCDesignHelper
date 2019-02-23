@@ -28,7 +28,7 @@ public class OnceProxyInfo {
     OnceProxyInfo(String packageName, String className) {
         this.packageName = packageName;
         this.targetClassName = className;
-        this.proxyClassName = className + "$$" + PROXY;
+        this.proxyClassName = className + PROXY;
     }
 
     String getProxyClassFullName() {

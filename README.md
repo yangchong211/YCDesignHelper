@@ -263,7 +263,9 @@
     - 看完这篇文章，应该就能够理解上面这些问题呢！
 - [9.5 路由框架的设计和初始化](https://github.com/yangchong211/YCBlogs/blob/master/android/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/14.%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%8E%E9%85%8D%E7%BD%AE.md)
     - 编译期是在你的项目编译的时候，这个时候还没有开始打包，也就是你没有生成apk呢！路由框架在这个时期根据注解去扫描所有文件，然后生成路由映射文件。这些文件都会统一打包到apk里，app运行时期做的东西也不少，但总而言之都是对映射信息的处理，如执行执行路由跳转等。那么如何设计框架呢？
-- [9.6 ]()
+    - 生成的注解代码，又是如何把这些路由映射关系拿到手，或者说在什么时候拿到手比较合适？为何注解需要进行初始化操作？
+- [9.6 路由框架设计注意要点]()
+    - 需要注意哪些要点？
 - [9.7 为何需要依赖注入](https://github.com/yangchong211/YCBlogs/blob/master/android/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/16.%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E8%AF%A6%E8%A7%A3.md)
     - 有哪些注入的方式可以解耦，你能想到多少？路由框架为何需要依赖注入？路由为何用注解进行依赖注入，而不是用反射方式注入，或者通过构造方法注入，或者通过接口方式注入？
 - [9.8 Activity属性注入](https://github.com/yangchong211/YCBlogs/blob/master/android/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/17.Activity%E5%B1%9E%E6%80%A7%E4%BC%A0%E9%80%92.md)
@@ -341,7 +343,7 @@
 - https://github.com/BaronZ88/Router
 - https://github.com/alibaba/ARouter
 - https://github.com/Xiasm/EasyRouter
--
+- https://github.com/chenenyu/Router
 - https://www.jianshu.com/p/8a3eeeaf01e8
 - https://www.jianshu.com/p/e2d93259dc34
 
