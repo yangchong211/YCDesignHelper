@@ -246,6 +246,7 @@
     }
     ```
 
+
 ### 09.使用注解搭建路由[综合案例]
 - [9.1 ARouter路由解析](https://github.com/yangchong211/YCBlogs/blob/master/android/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/03.ARouter%E8%B7%AF%E7%94%B1%E8%A7%A3%E6%9E%90.md)
     - 比较详细地分析了阿里路由库
@@ -255,21 +256,84 @@
     - 自定义Router注解，Router注解里有path和group，这便是仿照ARouter对路由进行分组。然后看看注解生成的代码，手写路由跳转代码。
 - [9.3 自定义路由Processor编译器](https://github.com/yangchong211/YCBlogs/blob/master/android/%E6%B3%A8%E8%A7%A3/08.%E6%B3%A8%E8%A7%A3%E4%B9%8B%E5%A4%84%E7%90%86%E5%99%A8%E7%B1%BBProcessor.md)
     - Processor介绍，重要方法，Element的作用，修饰方法的注解和ExecutableElement
-- [9.4 利用apt生成路由映射文件]()
-    -
-- [9.5 路由框架的设计]()
-    -
-#### 9.6 路由参数的传递和接收
+- [9.4 利用apt生成路由映射文件](https://github.com/yangchong211/YCBlogs/blob/master/android/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/13.%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90%E8%B7%AF%E7%94%B1%E6%98%A0%E5%B0%84%E6%96%87%E4%BB%B6.md)
+    - 在Activity类上加上@Router注解之后，便可通过apt来生成对应的路由表，那么究竟是如何生成的代码呢？
+    - 在组件化开发中，有多个module，为何要在build.gradle配置moduleName，又是如何通过代码拿到module名称？
+    - process处理方法如何生成代码的，又是如何写入具体的路径，写入文件的？
+    - 看完这篇文章，应该就能够理解上面这些问题呢！
+- [9.5 路由框架的设计和初始化](https://github.com/yangchong211/YCBlogs/blob/master/android/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/14.%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%8E%E9%85%8D%E7%BD%AE.md)
+    - 编译期是在你的项目编译的时候，这个时候还没有开始打包，也就是你没有生成apk呢！路由框架在这个时期根据注解去扫描所有文件，然后生成路由映射文件。这些文件都会统一打包到apk里，app运行时期做的东西也不少，但总而言之都是对映射信息的处理，如执行执行路由跳转等。那么如何设计框架呢？
+- [9.6 ]()
+- [9.7 为何需要依赖注入](https://github.com/yangchong211/YCBlogs/blob/master/android/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/16.%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E8%AF%A6%E8%A7%A3.md)
+    - 有哪些注入的方式可以解耦，你能想到多少？路由框架为何需要依赖注入？路由为何用注解进行依赖注入，而不是用反射方式注入，或者通过构造方法注入，或者通过接口方式注入？
+- [9.8 Activity属性注入](https://github.com/yangchong211/YCBlogs/blob/master/android/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/17.Activity%E5%B1%9E%E6%80%A7%E4%BC%A0%E9%80%92.md)
+    - 在跳转页面时，如何传递intent参数，或者如何实现跳转回调处理逻辑？
+- 9.9 路由开源库的使用
+    - 不带参数直接跳转
+        ```
+        @Router(path = Path.six)
+        public class SixActivity extends AppCompatActivity {
 
-- [9.7 为何需要依赖注入]()
-    -
-- [9.8 Activity属性注入]()
-    -
+            @Override
+            protected void onCreate(@Nullable Bundle savedInstanceState) {
+                super.onCreate(savedInstanceState);
+                setContentView(R.layout.activity_six);
+            }
 
-#### 9.9 路由开源库的使用
+        }
+
+        ARouter.getsInstance().build(Path.six)
+                    .navigation(MainActivity.this, new NavigationCallback() {
+                @Override
+                public void onFound(Postcard postcard) {
+                    Log.e("NavigationCallback","找到跳转页面");
+                }
+
+                @Override
+                public void onLost(Postcard postcard) {
+                    Log.e("NavigationCallback","未找到");
+                }
+
+                @Override
+                public void onArrival(Postcard postcard) {
+                    Log.e("NavigationCallback","成功跳转");
+                }
+            });
+        ```
+    - 带参数跳转
+        ```
+        @Router(path = Path.five)
+        public class FiveActivity extends AppCompatActivity {
+
+            @Extra
+            String title;
+
+            @Override
+            protected void onCreate(@Nullable Bundle savedInstanceState) {
+                super.onCreate(savedInstanceState);
+                setContentView(R.layout.activity_five);
+                //添加这行代码，实际上就是自动生成了下面获取参数值的代码
+                ARouter.getsInstance().inject(this);
+                //如果不添加插入注解，则可以直接用下面的代码。
+                //Intent intent = getIntent();
+                //String title = intent.getStringExtra("title");
+                Toast.makeText(this, "title=" + title, Toast.LENGTH_SHORT).show();
+            }
+
+        }
+
+        Bundle bundle = new Bundle();
+        bundle.putString("title","标题-------------");
+        ARouter.getsInstance()
+                .build(Path.five)
+                .withBundle(bundle)
+                .navigation();
+        ```
 
 
-### 20.其他说明
+
+
+### 10.其他说明
 #### 00.参考案例
 - https://www.jianshu.com/p/3358bbb84aa5
 - https://www.jianshu.com/p/200c6cc6adaf
@@ -277,6 +341,7 @@
 - https://github.com/BaronZ88/Router
 - https://github.com/alibaba/ARouter
 - https://github.com/Xiasm/EasyRouter
+-
 - https://www.jianshu.com/p/8a3eeeaf01e8
 - https://www.jianshu.com/p/e2d93259dc34
 
