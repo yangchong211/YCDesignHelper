@@ -97,14 +97,19 @@ public class ARouter {
             stringBuilder.append(SUFFIX_ROOT);
             String s = stringBuilder.toString();
             Log.d(TAG,"className-----------"+s);
+            //root中注册的是分组信息 将分组信息加入仓库中
             if (className.startsWith(s)) {
-                //root中注册的是分组信息 将分组信息加入仓库中
-                Object o = Class.forName(className).getConstructor().newInstance();
+                //拿到反射字节码
+                Class<?> aClass = Class.forName(className);
+                //获取对象
+                Object o = aClass.getConstructor().newInstance();
                 ((IRouteRoot) o).loadInto(Warehouse.groupsIndex);
             }
         }
-        for (Map.Entry<String, Class<? extends IRouteGroup>> stringClassEntry :
-                Warehouse.groupsIndex.entrySet()) {
+
+        Set<Map.Entry<String, Class<? extends IRouteGroup>>> entries =
+                Warehouse.groupsIndex.entrySet();
+        for (Map.Entry<String, Class<? extends IRouteGroup>> stringClassEntry : entries) {
             Log.d(TAG, "Root映射表[ " + stringClassEntry.getKey() + " : "
                     + stringClassEntry.getValue() + "]");
         }

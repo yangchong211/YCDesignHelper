@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
 
@@ -35,11 +36,13 @@ public class ClassUtils {
     /**
      * 获得程序所有的apk(instant run会产生很多split apk)
      * @param context                       上下文
-     * @return
+     * @return                              集合
      * @throws PackageManager.NameNotFoundException
      */
-    private static List<String> getSourcePaths(Context context) throws PackageManager.NameNotFoundException {
-        ApplicationInfo applicationInfo = context.getPackageManager().getApplicationInfo(context.getPackageName(), 0);
+    private static List<String> getSourcePaths(Context context) throws
+            PackageManager.NameNotFoundException {
+        ApplicationInfo applicationInfo = context.getPackageManager()
+                .getApplicationInfo(context.getPackageName(), 0);
         List<String> sourcePaths = new ArrayList<>();
         sourcePaths.add(applicationInfo.sourceDir);
         //instant run
@@ -55,17 +58,20 @@ public class ClassUtils {
      * 得到路由表的类名
      * @param context                       上下文
      * @param packageName                   包名
-     * @return
+     * @return                              集合
      * @throws PackageManager.NameNotFoundException
      * @throws InterruptedException
      */
     public static Set<String> getFileNameByPackageName(Application context,
-                                                       final String packageName)
+                                                       @NonNull final String packageName)
             throws PackageManager.NameNotFoundException, InterruptedException {
+        //创建一个set集合，set集合元素不会重复
         final Set<String> classNames = new HashSet<>();
+        //获得程序所有的apk
         List<String> paths = getSourcePaths(context);
         //使用同步计数器判断均处理完成
         final CountDownLatch countDownLatch = new CountDownLatch(paths.size());
+        //创建线程池
         ThreadPoolExecutor threadPoolExecutor = DefaultPoolExecutor
                 .newDefaultPoolExecutor(paths.size());
         for (final String path : paths) {
@@ -80,7 +86,8 @@ public class ClassUtils {
                             Enumeration<String> dexEntries = dexFile.entries();
                             while (dexEntries.hasMoreElements()) {
                                 String className = dexEntries.nextElement();
-                                if (!TextUtils.isEmpty(className) && className.startsWith(packageName)) {
+                                if (!TextUtils.isEmpty(className) &&
+                                        className.startsWith(packageName)) {
                                     classNames.add(className);
                                 }
                             }
