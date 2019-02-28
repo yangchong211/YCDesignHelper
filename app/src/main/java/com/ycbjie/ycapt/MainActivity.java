@@ -2,8 +2,10 @@ package com.ycbjie.ycapt;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import com.ycbjie.annotation.router.RouteMeta;
@@ -106,7 +108,12 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.tv_8).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                test();
+                Bundle bundle = new Bundle();
+                bundle.putString("title","接收数据");
+                ARouter.getsInstance()
+                        .build(Path.eight)
+                        .withBundle(bundle)
+                        .navigation(MainActivity.this,100);
             }
         });
         int a = getInt(Numbers1.ONE);
@@ -146,6 +153,7 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("ShowToast")
     private void showToast(String content){
         if (content==null || content.length()==0){
+            showToast("传递的吐司内容不能为空");
             return;
         }
         if (toast==null){
@@ -154,4 +162,14 @@ public class MainActivity extends AppCompatActivity {
         toast.show();
     }
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.i("onActivityResult",requestCode+"------------"+resultCode);
+        if (requestCode==100 && data!=null){
+            String title = data.getStringExtra("title");
+            showToast(title);
+        }
+    }
 }
