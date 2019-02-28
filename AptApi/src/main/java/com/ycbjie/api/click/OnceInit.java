@@ -55,7 +55,7 @@ public class OnceInit {
         if (injector == null) {
             try {
                 //生成代码的类名是有格式的，className$$PROXY.所以我们可以通过字符串找到类，并初始化它。
-                Class injectorClazz = Class.forName(clazz.getName() + "$$" + PROXY);
+                Class injectorClazz = Class.forName(clazz.getName() + PROXY);
                 injector = (AbstractInjector<Object>) injectorClazz.newInstance();
                 INJECTORS.put(clazz, injector);
             } catch (Exception e) {

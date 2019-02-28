@@ -18,8 +18,17 @@ import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
-
+/**
+ * <pre>
+ *     @author 杨充
+ *     blog  : https://github.com/yangchong211
+ *     time  : 2017/06/21
+ *     desc  : 封装的函数生成类
+ *     revise:
+ * </pre>
+ */
 public class LoadExtraBuilder {
+
     private static final String INJECT_TARGET = "$T t = ($T)target";
     private MethodSpec.Builder builder;
     private Elements elementUtils;

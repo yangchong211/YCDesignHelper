@@ -13,7 +13,7 @@ import javax.tools.Diagnostic;
  *     revise: https://github.com/yangchong211/YCApt
  * </pre>
  */
-public  class RouterLog {
+public class RouterLog {
 
     private Messager messager;
 

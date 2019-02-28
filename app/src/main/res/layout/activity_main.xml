@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorAccent"
         android:padding="10dp"
-        android:text="1.使用注解，添加点击事件，间隔1秒钟"/>
+        android:text="1.使用注解[编译期]，添加点击事件，间隔2秒钟"/>
 
 
     <TextView
@@ -24,7 +24,7 @@
         android:layout_marginTop="10dp"
         android:background="@color/colorAccent"
         android:padding="10dp"
-        android:text="2.使用注解，添加点击事件，间隔2秒钟"/>
+        android:text="2.使用注解[运行期]，实现setContentView的功能"/>
 
 
     <TextView
@@ -34,7 +34,7 @@
         android:layout_marginTop="10dp"
         android:background="@color/colorAccent"
         android:padding="10dp"
-        android:text="3.使用路由跳转到另一个activity"/>
+        android:text="3.测试配置路由路径错误，监听跳转回调状态"/>
 
     <TextView
         android:id="@+id/tv_4"
@@ -52,7 +52,7 @@
         android:layout_marginTop="10dp"
         android:background="@color/colorAccent"
         android:padding="10dp"
-        android:text="5.测试路由跳转5页面"/>
+        android:text="5.测试路由跳转5页面，并且传递bundle数据"/>
 
     <TextView
         android:id="@+id/tv_6"
@@ -71,5 +71,14 @@
         android:background="@color/colorAccent"
         android:padding="10dp"
         android:text="7.测试路由跳转5页面，简易代码逻辑"/>
+
+    <TextView
+        android:id="@+id/tv_8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorAccent"
+        android:padding="10dp"
+        android:text="8.测试路由跳转8页面并且回传消息"/>
 
 </LinearLayout>

@@ -1,11 +1,11 @@
 package com.ycbjie.ycapt;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-
+import android.widget.Toast;
 import com.ycbjie.annotation.router.RouteMeta;
 import com.ycbjie.api.router.ARouter;
 import com.ycbjie.api.router.callback.NavigationCallback;
@@ -16,6 +16,8 @@ import com.ycbjie.api.router.routes.ARouter_Root_app;
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
+
+    private Toast toast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,10 +30,38 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this,FirstActivity.class));
             }
         });
+        findViewById(R.id.tv_2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,SecondActivity.class));
+            }
+        });
+        findViewById(R.id.tv_3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ARouter.getsInstance().build("/app/yc")
+                        .navigation(MainActivity.this, new NavigationCallback() {
+                            @Override
+                            public void onFound(Postcard postcard) {
+                                showToast("NavigationCallback"+"找到跳转页面");
+                            }
+
+                            @Override
+                            public void onLost(Postcard postcard) {
+                                showToast("NavigationCallback"+"未找到");
+                            }
+
+                            @Override
+                            public void onArrival(Postcard postcard) {
+                                showToast("NavigationCallback"+"成功跳转");
+                            }
+                        });
+            }
+        });
         findViewById(R.id.tv_4).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,FourActivity.class));
+
             }
         });
         findViewById(R.id.tv_5).setOnClickListener(new View.OnClickListener() {
@@ -50,20 +80,20 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 ARouter.getsInstance().build(Path.six)
                         .navigation(MainActivity.this, new NavigationCallback() {
-                    @Override
-                    public void onFound(Postcard postcard) {
-                        Log.e("NavigationCallback","找到跳转页面");
-                    }
+                            @Override
+                            public void onFound(Postcard postcard) {
+                                showToast("NavigationCallback"+"找到跳转页面");
+                            }
 
-                    @Override
-                    public void onLost(Postcard postcard) {
-                        Log.e("NavigationCallback","未找到");
-                    }
+                            @Override
+                            public void onLost(Postcard postcard) {
+                                showToast("NavigationCallback"+"未找到");
+                            }
 
-                    @Override
-                    public void onArrival(Postcard postcard) {
-                        Log.e("NavigationCallback","成功跳转");
-                    }
+                            @Override
+                            public void onArrival(Postcard postcard) {
+                                showToast("NavigationCallback"+"成功跳转");
+                            }
                 });
             }
         });
@@ -73,7 +103,12 @@ public class MainActivity extends AppCompatActivity {
                 test();
             }
         });
-
+        findViewById(R.id.tv_8).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                test();
+            }
+        });
         int a = getInt(Numbers1.ONE);
     }
 
@@ -105,6 +140,18 @@ public class MainActivity extends AppCompatActivity {
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
+    }
+    
+    
+    @SuppressLint("ShowToast")
+    private void showToast(String content){
+        if (content==null || content.length()==0){
+            return;
+        }
+        if (toast==null){
+            toast = Toast.makeText(MainActivity.this, content, Toast.LENGTH_SHORT);
+        }
+        toast.show();
     }
 
 }
