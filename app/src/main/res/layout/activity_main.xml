@@ -70,7 +70,7 @@
         android:layout_marginTop="10dp"
         android:background="@color/colorAccent"
         android:padding="10dp"
-        android:text="7.测试路由跳转5页面，简易代码逻辑"/>
+        android:text="7.使用注解生成的代码，测试路由跳转5页面"/>
 
     <TextView
         android:id="@+id/tv_8"
