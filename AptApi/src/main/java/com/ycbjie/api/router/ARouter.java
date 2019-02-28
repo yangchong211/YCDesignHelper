@@ -183,12 +183,13 @@ public class ARouter {
             prepareCard(postcard);
         }catch (NoRouteFoundException e) {
             e.printStackTrace();
-            //没找到
+            //没找到，可能是路径配置错误
             if (null != callback) {
                 callback.onLost(postcard);
             }
             return null;
         }
+        //找到对应的路径呢
         if (null != callback) {
             callback.onFound(postcard);
         }
